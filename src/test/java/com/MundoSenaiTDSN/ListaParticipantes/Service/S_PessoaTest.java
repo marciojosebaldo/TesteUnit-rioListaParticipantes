@@ -33,6 +33,8 @@ class S_PessoaTeste {
         when(r_pessoaMock.save(any(M_Pessoa.class))).thenReturn(new M_Pessoa());
 
         M_Resposta m_resposta = s_pessoaMock.cadastrarPessoa("nome", "12345678901", "email@teste.com", "4698859785", "123", "123");
+
+        assertEquals(true, m_resposta.getStatus());
     }
 
     @Test
@@ -42,7 +44,6 @@ class S_PessoaTeste {
 
         M_Resposta m_resposta = s_pessoaMock.cadastrarPessoa("nome", "12345678901", "email@teste.com", "4698859785", "123", "123");
 
-        // Realize as asserções necessárias para verificar o resultado
-        // Exemplo: assertEquals(false, m_resposta.getStatus());
+        assertEquals(true, m_resposta.getStatus());
     }
 }
