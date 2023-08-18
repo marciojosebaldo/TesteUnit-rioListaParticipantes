@@ -13,6 +13,9 @@ import org.springframework.dao.DataIntegrityViolationException;
 import static org.mockito.Mockito.when;
 import static org.mockito.ArgumentMatchers.any;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+
 class S_PessoaTeste {
 
     @Mock
@@ -29,8 +32,6 @@ class S_PessoaTeste {
     public void testeCadastrarPessoa() {
         when(r_pessoaMock.save(any(M_Pessoa.class))).thenReturn(new M_Pessoa());
 
-        S_Pessoa s_pessoa = new S_Pessoa(r_pessoaMock);
-
         M_Resposta m_resposta = s_pessoaMock.cadastrarPessoa("nome", "12345678901", "email@teste.com", "4698859785", "123", "123");
     }
 
@@ -38,5 +39,10 @@ class S_PessoaTeste {
     public void testCadastrarPessoaComErro() {
         when(r_pessoaMock.save(Mockito.any(M_Pessoa.class))).
                 thenThrow(new DataIntegrityViolationException("Mensagem de erro"));
+
+        M_Resposta m_resposta = s_pessoaMock.cadastrarPessoa("nome", "12345678901", "email@teste.com", "4698859785", "123", "123");
+
+        // Realize as asserções necessárias para verificar o resultado
+        // Exemplo: assertEquals(false, m_resposta.getStatus());
     }
 }
