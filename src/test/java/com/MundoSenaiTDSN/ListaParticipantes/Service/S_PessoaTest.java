@@ -3,7 +3,6 @@ package com.MundoSenaiTDSN.ListaParticipantes.Service;
 import com.MundoSenaiTDSN.ListaParticipantes.Model.M_Pessoa;
 import com.MundoSenaiTDSN.ListaParticipantes.Model.M_Resposta;
 import com.MundoSenaiTDSN.ListaParticipantes.Repository.R_Pessoa;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -12,6 +11,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.dao.DataIntegrityViolationException;
 
 import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.any;
 
 class S_PessoaTeste {
 
@@ -29,14 +29,14 @@ class S_PessoaTeste {
     public void testeCadastrarPessoa() {
         when(r_pessoaMock.save(any(M_Pessoa.class))).thenReturn(new M_Pessoa());
 
-        M_Resposta resposta = s_pessoaMock.cadastrarPessoa("Nome", "12345678901", "email@teste.com", "senha", "senha");
+        S_Pessoa s_pessoa = new S_Pessoa(r_pessoaMock);
+
+        M_Resposta m_resposta = s_pessoaMock.cadastrarPessoa("nome", "12345678901", "email@teste.com", "4698859785", "123", "123");
     }
 
     @Test
     public void testCadastrarPessoaComErro() {
-        when(r_pessoaMock.save(any) (M_Pessoa.class))).
-        thenThrow(new DataIntegrityViolationException("Mensagem de erro"));
+        when(r_pessoaMock.save(Mockito.any(M_Pessoa.class))).
+                thenThrow(new DataIntegrityViolationException("Mensagem de erro"));
     }
-
-    M_Pessoa resposta = s_pessoaMock.cadastrarPessoa("Nome", "12345678901", "email@example.com", "", "senha", "senha");
 }
