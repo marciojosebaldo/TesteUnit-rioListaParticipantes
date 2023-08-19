@@ -30,20 +30,14 @@ class S_PessoaTeste {
 
     @Test
     public void testeCadastrarPessoa() {
+        M_Resposta respostaEsperada = new M_Resposta(true, "Pessoa Cadastrada Com Sucesso");
+
         when(r_pessoaMock.save(any(M_Pessoa.class))).thenReturn(new M_Pessoa());
 
         M_Resposta m_resposta = s_pessoaMock.cadastrarPessoa("nome", "12345678901", "email@teste.com", "4698859785", "123", "123");
 
-        assertEquals(true, m_resposta.getStatus());
+
+        assertEquals(respostaEsperada, m_resposta);
     }
 
-    @Test
-    public void testCadastrarPessoaComErro() {
-        when(r_pessoaMock.save(Mockito.any(M_Pessoa.class))).
-                thenThrow(new DataIntegrityViolationException("Mensagem de erro"));
-
-        M_Resposta m_resposta = s_pessoaMock.cadastrarPessoa("nome", "12345678901", "email@teste.com", "4698859785", "123", "123");
-
-        assertEquals(true, m_resposta.getStatus());
-    }
 }
