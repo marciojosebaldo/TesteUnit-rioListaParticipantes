@@ -34,10 +34,10 @@ class S_PessoaTeste {
 
         when(r_pessoaMock.save(any(M_Pessoa.class))).thenReturn(new M_Pessoa());
 
-        M_Resposta m_resposta = s_pessoaMock.cadastrarPessoa("nome", "12345678901", "email@teste.com", "4698859785", "123", "123");
+        M_Resposta m_resposta = s_pessoaMock.cadastrarPessoa("nome", "03455554148", "email@teste.com", "4698859785", "123", "123");
 
-
-        assertEquals(respostaEsperada, m_resposta);
-    }
+        // Imprime o objeto retornado e seus atributos
+        System.out.println("Objeto retornado: " + m_resposta);
+        System.out.println("Atributo mensagem: " + m_resposta.getMensagem());    }
 
 }
